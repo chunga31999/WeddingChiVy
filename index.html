@@ -22,20 +22,27 @@
             var e = 960;
             var f = 420;
             var g = '';
+				var viewport = a.getElementById("viewport");
+
+				if (!viewport) {
+					viewport = a.createElement("meta");
+					viewport.id = "viewport";
+					viewport.name = "viewport";
+					a.head.appendChild(viewport);
+				}
 
             if (!d) {
                g = "width=" + e + ",user-scalable=no,initial-scale=1.0";
-               var j = a.getElementById("viewport");
-
-               if (!j) {
-                  j = a.createElement("meta");
-                  j.id = "viewport";
-                  j.name = "viewport";
-                  a.head.appendChild(j);
-               }
-
-               j.setAttribute("content", g);
+					viewport.setAttribute("content", g);
             } else {
+					if (c && c < f) {
+						viewport.setAttribute(
+								  "content",
+								  "width=" + f + ", initial-scale=" + (c / f) + ", user-scalable=no"
+						);
+						return;
+					}
+
                viewport.setAttribute(
                        "content",
                        "width=device-width, initial-scale=1.0"
